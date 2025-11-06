@@ -13,3 +13,5 @@ tableau-mcp.dxt
 tableau-mcp.mcpb
 *.pem
 *.tgz
+.vscode/mcp.json
+config.node.json
