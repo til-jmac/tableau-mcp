@@ -1,0 +1,7 @@
+{
+  "chat.mcp.serverSampling": {
+    "tableau-mcp/.vscode/mcp.json: tableau": {
+      "allowedModels": ["copilot/gpt-5-mini", "copilot/claude-sonnet-4.5"]
+    }
+  }
+}
