@@ -97,12 +97,22 @@ export default class ProjectsMethods extends AuthenticatedMethods<typeof project
       parentProjectId?: string;
     };
   }): Promise<Project> => {
+    const projectData = {
+      name: project.name,
+      ...(project.description !== undefined ? { description: project.description } : {}),
+      ...(project.contentPermissions !== undefined
+        ? { contentPermissions: project.contentPermissions }
+        : {}),
+      ...(project.parentProjectId !== undefined
+        ? { parentProjectId: project.parentProjectId }
+        : {}),
+    };
+
     return (
-      await this._apiClient.createProject({
-        params: { siteId },
-        project,
-        ...this.authHeader,
-      })
+      await this._apiClient.createProject(
+        { project: projectData },
+        { params: { siteId }, ...this.authHeader },
+      )
     ).project;
   };
 
@@ -131,12 +141,23 @@ export default class ProjectsMethods extends AuthenticatedMethods<typeof project
       ownerId?: string;
     };
   }): Promise<Project> => {
+    const projectData = {
+      ...(project.name !== undefined ? { name: project.name } : {}),
+      ...(project.description !== undefined ? { description: project.description } : {}),
+      ...(project.contentPermissions !== undefined
+        ? { contentPermissions: project.contentPermissions }
+        : {}),
+      ...(project.parentProjectId !== undefined
+        ? { parentProjectId: project.parentProjectId }
+        : {}),
+      ...(project.ownerId !== undefined ? { ownerId: project.ownerId } : {}),
+    };
+
     return (
-      await this._apiClient.updateProject({
-        params: { siteId, projectId },
-        project,
-        ...this.authHeader,
-      })
+      await this._apiClient.updateProject(
+        { project: projectData },
+        { params: { siteId, projectId }, ...this.authHeader },
+      )
     ).project;
   };
 
