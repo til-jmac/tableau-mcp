@@ -2,6 +2,7 @@ import { RequestId } from '@modelcontextprotocol/sdk/types.js';
 
 import { BoundedContext, Config, getConfig } from '../config.js';
 import { useRestApi } from '../restApiInstance.js';
+import { Project } from '../sdks/tableau/types/project.js';
 import { Workbook } from '../sdks/tableau/types/workbook.js';
 import { Server } from '../server.js';
 import { getExceptionMessage } from '../utils/getExceptionMessage.js';
@@ -22,6 +23,7 @@ class ResourceAccessChecker {
   private _allowedDatasourceIds: Set<string> | null | undefined;
   private _allowedWorkbookIds: Set<string> | null | undefined;
 
+  private readonly _cachedProjectIds: Map<string, AllowedResult<Project>>;
   private readonly _cachedDatasourceIds: Map<string, AllowedResult>;
   private readonly _cachedWorkbookIds: Map<string, AllowedResult<Workbook>>;
   private readonly _cachedViewIds: Map<string, AllowedResult>;
@@ -41,6 +43,7 @@ class ResourceAccessChecker {
     this._allowedDatasourceIds = boundedContext?.datasourceIds;
     this._allowedWorkbookIds = boundedContext?.workbookIds;
 
+    this._cachedProjectIds = new Map();
     this._cachedDatasourceIds = new Map();
     this._cachedWorkbookIds = new Map();
     this._cachedViewIds = new Map();
@@ -68,6 +71,24 @@ class ResourceAccessChecker {
     }
 
     return this._allowedWorkbookIds;
+  }
+
+  async isProjectAllowed({
+    projectId,
+    restApiArgs,
+  }: {
+    projectId: string;
+    restApiArgs: RestApiArgs;
+  }): Promise<AllowedResult<Project>> {
+    const result = await this._isProjectAllowed({
+      projectId,
+      restApiArgs,
+    });
+
+    // Projects can be cached since they don't belong to other projects (for filtering purposes).
+    this._cachedProjectIds.set(projectId, result);
+
+    return result;
   }
 
   async isDatasourceAllowed({
@@ -128,6 +149,57 @@ class ResourceAccessChecker {
     }
 
     return result;
+  }
+
+  private async _isProjectAllowed({
+    projectId,
+    restApiArgs: { config, requestId, server, signal },
+  }: {
+    projectId: string;
+    restApiArgs: RestApiArgs;
+  }): Promise<AllowedResult<Project>> {
+    const cachedResult = this._cachedProjectIds.get(projectId);
+    if (cachedResult) {
+      return cachedResult;
+    }
+
+    if (this.allowedProjectIds && !this.allowedProjectIds.has(projectId)) {
+      return {
+        allowed: false,
+        message: [
+          'The set of allowed projects that can be accessed is limited by the server configuration.',
+          `Accessing the project with LUID ${projectId} is not allowed.`,
+        ].join(' '),
+      };
+    }
+
+    // If we need to return the project details, fetch them
+    try {
+      const project = await useRestApi({
+        config,
+        requestId,
+        server,
+        jwtScopes: ['tableau:content:read'],
+        signal,
+        callback: async (restApi) => {
+          const project = await restApi.projectsMethods.getProject({
+            siteId: restApi.siteId,
+            projectId,
+          });
+          return project;
+        },
+      });
+
+      return { allowed: true, content: project };
+    } catch (error) {
+      return {
+        allowed: false,
+        message: [
+          'An error occurred while checking if the project is allowed:',
+          getExceptionMessage(error),
+        ].join(' '),
+      };
+    }
   }
 
   private async _isDatasourceAllowed({

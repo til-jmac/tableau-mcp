@@ -7,6 +7,11 @@ export const toolNames = [
   'get-workbook',
   'get-view-data',
   'get-view-image',
+  'list-projects',
+  'get-project',
+  'create-project',
+  'update-project',
+  'delete-project',
   'list-all-pulse-metric-definitions',
   'list-pulse-metric-definitions-from-definition-ids',
   'list-pulse-metrics-from-metric-definition-id',
@@ -22,6 +27,7 @@ export const toolGroupNames = [
   'datasource',
   'workbook',
   'view',
+  'project',
   'pulse',
   'content-exploration',
 ] as const;
@@ -31,6 +37,7 @@ export const toolGroups = {
   datasource: ['list-datasources', 'get-datasource-metadata', 'query-datasource'],
   workbook: ['list-workbooks', 'get-workbook'],
   view: ['list-views', 'get-view-data', 'get-view-image'],
+  project: ['list-projects', 'get-project', 'create-project', 'update-project', 'delete-project'],
   pulse: [
     'list-all-pulse-metric-definitions',
     'list-pulse-metric-definitions-from-definition-ids',

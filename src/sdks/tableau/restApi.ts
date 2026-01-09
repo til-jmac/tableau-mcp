@@ -14,6 +14,7 @@ import {
 import ContentExplorationMethods from './methods/contentExplorationMethods.js';
 import DatasourcesMethods from './methods/datasourcesMethods.js';
 import MetadataMethods from './methods/metadataMethods.js';
+import ProjectsMethods from './methods/projectsMethods.js';
 import PulseMethods from './methods/pulseMethods.js';
 import { AuthenticatedServerMethods, ServerMethods } from './methods/serverMethods.js';
 import ViewsMethods from './methods/viewsMethods.js';
@@ -39,6 +40,7 @@ export class RestApi {
   private _contentExplorationMethods?: ContentExplorationMethods;
   private _datasourcesMethods?: DatasourcesMethods;
   private _metadataMethods?: MetadataMethods;
+  private _projectsMethods?: ProjectsMethods;
   private _pulseMethods?: PulseMethods;
   private _serverMethods?: ServerMethods;
   private _vizqlDataServiceMethods?: VizqlDataServiceMethods;
@@ -159,6 +161,18 @@ export class RestApi {
     }
 
     return this._metadataMethods;
+  }
+
+  get projectsMethods(): ProjectsMethods {
+    if (!this._projectsMethods) {
+      this._projectsMethods = new ProjectsMethods(this._baseUrl, this.creds, {
+        timeout: this._maxRequestTimeoutMs,
+        signal: this._signal,
+      });
+      this._addInterceptors(this._baseUrl, this._projectsMethods.interceptors);
+    }
+
+    return this._projectsMethods;
   }
 
   get pulseMethods(): PulseMethods {
