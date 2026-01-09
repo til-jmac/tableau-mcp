@@ -45,6 +45,39 @@ Standard config works in most MCP clients:
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/tableau/tableau-mcp)
 
+## Available Tools
+
+### Project Management
+- **list-projects** - List and filter projects with pagination
+- **get-project** - Get details of a specific project
+- **create-project** - Create new projects (admin-only)
+- **update-project** - Update project properties (admin-only)
+- **delete-project** - Delete projects with confirmation (admin-only)
+
+### Data Sources
+- **list-datasources** - List and filter data sources
+- **get-datasource-metadata** - Get metadata for a data source
+- **query-datasource** - Query data from a data source
+
+### Workbooks & Views
+- **list-workbooks** - List and filter workbooks
+- **get-workbook** - Get workbook details
+- **list-views** - List and filter views
+- **get-view-data** - Get view data in CSV format
+- **get-view-image** - Get view as PNG image
+
+### Pulse Metrics
+- **list-all-pulse-metric-definitions** - List all Pulse metric definitions
+- **list-pulse-metric-definitions-from-definition-ids** - Get specific metric definitions
+- **list-pulse-metrics-from-metric-definition-id** - Get metrics for a definition
+- **list-pulse-metrics-from-metric-ids** - Get specific metrics
+- **list-pulse-metric-subscriptions** - List user's metric subscriptions
+- **generate-pulse-metric-value-insight-bundle** - Generate metric insights
+- **generate-pulse-insight-brief** - Generate insight briefs
+
+### Content Exploration
+- **search-content** - Search for workbooks, views, and data sources
+
 ## Example Prompts to Client
 
 #### Prompt #1: Querying Data
