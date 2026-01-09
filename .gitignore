@@ -9,9 +9,14 @@ test-logs/
 config.json
 env.list
 manifest.json
+sea-prep.blob
+tableau-mcp
 tableau-mcp.dxt
+tableau-mcp.exe
 tableau-mcp.mcpb
 *.pem
 *.tgz
+*.tar.gz
+*.zip
 .vscode/mcp.json
 config.node.json
