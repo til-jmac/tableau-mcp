@@ -79,6 +79,7 @@ Standard config works in most MCP clients:
 - **add-permissions** - Add permissions to a resource
 - **update-default-permissions** - Update default permissions for a project
 - **delete-permission** - Delete a specific permission
+- **delete-default-permission** - Delete a default permission from a project
 
 ### Data Sources
 - **list-datasources** - List and filter data sources

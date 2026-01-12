@@ -32,6 +32,7 @@ export const toolNames = [
   'add-permissions',
   'update-default-permissions',
   'delete-permission',
+  'delete-default-permission',
   'list-all-pulse-metric-definitions',
   'list-pulse-metric-definitions-from-definition-ids',
   'list-pulse-metrics-from-metric-definition-id',
@@ -87,6 +88,7 @@ export const toolGroups = {
     'add-permissions',
     'update-default-permissions',
     'delete-permission',
+    'delete-default-permission',
   ],
   pulse: [
     'list-all-pulse-metric-definitions',

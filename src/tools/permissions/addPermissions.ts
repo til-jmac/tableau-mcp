@@ -4,7 +4,7 @@ import { z } from 'zod';
 
 import { getConfig } from '../../config.js';
 import { useRestApi } from '../../restApiInstance.js';
-import { Permissions, permissionResourceTypeSchema } from '../../sdks/tableau/types/permissions.js';
+import { Permissions } from '../../sdks/tableau/types/permissions.js';
 import { Server } from '../../server.js';
 import { getTableauAuthInfo } from '../../server/oauth/getTableauAuthInfo.js';
 import { Tool } from '../tool.js';

@@ -49,7 +49,7 @@ ${formatCapabilitiesForDisplay('workbooks')}
             config,
             requestId,
             server,
-            jwtScopes: ['tableau:content:read'],
+            jwtScopes: ['tableau:permissions:read'],
             signal,
             authInfo: getTableauAuthInfo(authInfo),
             callback: async (restApi) => {

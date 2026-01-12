@@ -9,6 +9,7 @@ import { getRemoveUserFromGroupTool } from './groups/removeUserFromGroup.js';
 import { getUpdateGroupTool } from './groups/updateGroup.js';
 import { getListDatasourcesTool } from './listDatasources/listDatasources.js';
 import { getAddPermissionsTool } from './permissions/addPermissions.js';
+import { getDeleteDefaultPermissionTool } from './permissions/deleteDefaultPermission.js';
 import { getDeletePermissionTool } from './permissions/deletePermission.js';
 import { getListDatasourcePermissionsTool } from './permissions/listDatasourcePermissions.js';
 import { getListDefaultPermissionsTool } from './permissions/listDefaultPermissions.js';
@@ -69,6 +70,7 @@ export const toolFactories = [
   getAddPermissionsTool,
   getUpdateDefaultPermissionsTool,
   getDeletePermissionTool,
+  getDeleteDefaultPermissionTool,
   getListAllPulseMetricDefinitionsTool,
   getListPulseMetricDefinitionsFromDefinitionIdsTool,
   getListPulseMetricsFromMetricDefinitionIdTool,

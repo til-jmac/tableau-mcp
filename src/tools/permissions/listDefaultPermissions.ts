@@ -57,7 +57,7 @@ Returns the default permissions for a specific resource type within a project. D
             config,
             requestId,
             server,
-            jwtScopes: ['tableau:content:read'],
+            jwtScopes: ['tableau:permissions:read'],
             signal,
             authInfo: getTableauAuthInfo(authInfo),
             callback: async (restApi) => {
