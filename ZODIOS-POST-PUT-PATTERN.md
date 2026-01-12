@@ -1,7 +1,7 @@
-# Zodios POST/PUT Request Pattern
+# Zodios Request Patterns (POST/PUT/DELETE)
 
 ## Problem We Solved
-First POST/PUT implementation in this codebase. All previous methods were GET requests, so there was no reference pattern for write operations with Zodios.
+First POST/PUT/DELETE implementations in this codebase. All previous methods were GET requests, so there was no reference pattern for write operations with Zodios.
 
 ## The Solution
 
@@ -166,8 +166,63 @@ await this._apiClient.createUser(
 3. **Check if HTTP request is actually sent** - if it fails validation, no request happens
 4. **ZodError messages** show which path failed validation
 
+---
+
+## DELETE Request Pattern
+
+DELETE requests have NO body but still need path parameters and headers. The two-argument pattern is **required** for path params to be substituted correctly.
+
+### API Endpoint Definition
+
+```typescript
+const deleteProjectEndpoint = makeEndpoint({
+  method: 'delete',
+  path: '/sites/:siteId/projects/:projectId',
+  alias: 'deleteProject',
+  parameters: [
+    { name: 'siteId', type: 'Path', schema: z.string() },
+    { name: 'projectId', type: 'Path', schema: z.string() },
+  ],
+  response: z.void(),
+});
+```
+
+### Method Call - CRITICAL
+
+Use `undefined` as the first argument (body placeholder), config as second:
+
+```typescript
+deleteProject = async ({ siteId, projectId }): Promise<void> => {
+  await this._apiClient.deleteProject(undefined, {
+    params: { siteId, projectId },
+    ...this.authHeader,
+  });
+};
+```
+
+### What Didn't Work
+
+```typescript
+// WRONG - path params NOT substituted, URL shows /sites/:siteId/projects/:projectId
+await this._apiClient.deleteProject({
+  params: { siteId, projectId },
+  ...this.authHeader,
+});
+```
+
+**Problem:** With single-argument pattern, Zodios doesn't recognize `params` and the path parameters remain as literals (`:siteId`, `:projectId`), causing 401 errors.
+
+### Key Insight
+
+Even though DELETE has no body, Zodios still expects the two-argument pattern when you have path parameters:
+- First argument: `undefined` (no body)
+- Second argument: Config object with `params` and headers
+
+---
+
 ## Reference Files
 
-- Working example: `/src/sdks/tableau/apis/projectsApi.ts` (createProjectEndpoint)
-- Working method: `/src/sdks/tableau/methods/projectsMethods.ts` (createProject)
+- Working POST/PUT: `/src/sdks/tableau/apis/projectsApi.ts` (createProjectEndpoint, updateProjectEndpoint)
+- Working DELETE: `/src/sdks/tableau/apis/projectsApi.ts` (deleteProjectEndpoint)
+- Working methods: `/src/sdks/tableau/methods/projectsMethods.ts`
 - Restart procedure: `/RESTART-PROCEDURE.md`

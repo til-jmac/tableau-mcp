@@ -8,7 +8,6 @@ export const toolNames = [
   'get-view-data',
   'get-view-image',
   'list-projects',
-  'get-project',
   'create-project',
   'update-project',
   'delete-project',
@@ -37,7 +36,7 @@ export const toolGroups = {
   datasource: ['list-datasources', 'get-datasource-metadata', 'query-datasource'],
   workbook: ['list-workbooks', 'get-workbook'],
   view: ['list-views', 'get-view-data', 'get-view-image'],
-  project: ['list-projects', 'get-project', 'create-project', 'update-project', 'delete-project'],
+  project: ['list-projects', 'create-project', 'update-project', 'delete-project'],
   pulse: [
     'list-all-pulse-metric-definitions',
     'list-pulse-metric-definitions-from-definition-ids',

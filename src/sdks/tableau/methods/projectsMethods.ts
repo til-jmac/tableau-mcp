@@ -54,12 +54,14 @@ export default class ProjectsMethods extends AuthenticatedMethods<typeof project
 
   /**
    * Returns information about the specified project.
+   * Note: Tableau REST API doesn't have a dedicated "Get Project" endpoint,
+   * so we use Query Projects with a luid filter.
    *
    * Required scopes: `tableau:content:read`
    *
    * @param siteId - The Tableau site ID
-   * @param projectId - The ID of the project
-   * @link https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_projects.htm#query_project
+   * @param projectId - The ID (LUID) of the project
+   * @link https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_projects.htm#query_projects
    */
   getProject = async ({
     siteId,
@@ -68,12 +70,18 @@ export default class ProjectsMethods extends AuthenticatedMethods<typeof project
     siteId: string;
     projectId: string;
   }): Promise<Project> => {
-    return (
-      await this._apiClient.getProject({
-        params: { siteId, projectId },
-        ...this.authHeader,
-      })
-    ).project;
+    const response = await this._apiClient.listProjects({
+      params: { siteId },
+      queries: { filter: `luid:eq:${projectId}` },
+      ...this.authHeader,
+    });
+
+    const projects = response.projects.project ?? [];
+    if (projects.length === 0) {
+      throw new Error(`Project with ID ${projectId} not found`);
+    }
+
+    return projects[0];
   };
 
   /**
@@ -177,7 +185,7 @@ export default class ProjectsMethods extends AuthenticatedMethods<typeof project
     siteId: string;
     projectId: string;
   }): Promise<void> => {
-    await this._apiClient.deleteProject({
+    await this._apiClient.deleteProject(undefined, {
       params: { siteId, projectId },
       ...this.authHeader,
     });

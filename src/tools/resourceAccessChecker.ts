@@ -153,7 +153,6 @@ class ResourceAccessChecker {
 
   private async _isProjectAllowed({
     projectId,
-    restApiArgs: { config, requestId, server, signal },
   }: {
     projectId: string;
     restApiArgs: RestApiArgs;
@@ -173,33 +172,10 @@ class ResourceAccessChecker {
       };
     }
 
-    // If we need to return the project details, fetch them
-    try {
-      const project = await useRestApi({
-        config,
-        requestId,
-        server,
-        jwtScopes: ['tableau:content:read'],
-        signal,
-        callback: async (restApi) => {
-          const project = await restApi.projectsMethods.getProject({
-            siteId: restApi.siteId,
-            projectId,
-          });
-          return project;
-        },
-      });
-
-      return { allowed: true, content: project };
-    } catch (error) {
-      return {
-        allowed: false,
-        message: [
-          'An error occurred while checking if the project is allowed:',
-          getExceptionMessage(error),
-        ].join(' '),
-      };
-    }
+    // Note: Tableau REST API doesn't have a "Get Project" endpoint, so we can't
+    // fetch project details here. The bounded context check above is sufficient.
+    // Tools that need project details should fetch them separately.
+    return { allowed: true };
   }
 
   private async _isDatasourceAllowed({

@@ -34,28 +34,6 @@ const listProjectsEndpoint = makeEndpoint({
   }),
 });
 
-const getProjectEndpoint = makeEndpoint({
-  method: 'get',
-  path: '/sites/:siteId/projects/:projectId',
-  alias: 'getProject',
-  description: 'Returns information about the specified project.',
-  parameters: [
-    {
-      name: 'siteId',
-      type: 'Path',
-      schema: z.string(),
-    },
-    {
-      name: 'projectId',
-      type: 'Path',
-      schema: z.string(),
-    },
-  ],
-  response: z.object({
-    project: projectSchema,
-  }),
-});
-
 const createProjectEndpoint = makeEndpoint({
   method: 'post',
   path: '/sites/:siteId/projects',
@@ -142,7 +120,6 @@ const deleteProjectEndpoint = makeEndpoint({
 
 const projectsApi = makeApi([
   listProjectsEndpoint,
-  getProjectEndpoint,
   createProjectEndpoint,
   updateProjectEndpoint,
   deleteProjectEndpoint,

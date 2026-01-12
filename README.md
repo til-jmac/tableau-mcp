@@ -49,7 +49,6 @@ Standard config works in most MCP clients:
 
 ### Project Management
 - **list-projects** - List and filter projects with pagination
-- **get-project** - Get details of a specific project
 - **create-project** - Create new projects (admin-only)
 - **update-project** - Update project properties (admin-only)
 - **delete-project** - Delete projects with confirmation (admin-only)

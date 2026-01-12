@@ -3,7 +3,6 @@ import { getGetDatasourceMetadataTool } from './getDatasourceMetadata/getDatasou
 import { getListDatasourcesTool } from './listDatasources/listDatasources.js';
 import { getCreateProjectTool } from './projects/createProject.js';
 import { getDeleteProjectTool } from './projects/deleteProject.js';
-import { getGetProjectTool } from './projects/getProject.js';
 import { getListProjectsTool } from './projects/listProjects.js';
 import { getUpdateProjectTool } from './projects/updateProject.js';
 import { getGeneratePulseInsightBriefTool } from './pulse/generateInsightBrief/generatePulseInsightBriefTool.js';
@@ -25,7 +24,6 @@ export const toolFactories = [
   getListDatasourcesTool,
   getQueryDatasourceTool,
   getListProjectsTool,
-  getGetProjectTool,
   getCreateProjectTool,
   getUpdateProjectTool,
   getDeleteProjectTool,
