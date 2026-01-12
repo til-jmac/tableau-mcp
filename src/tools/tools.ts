@@ -1,11 +1,24 @@
 import { getSearchContentTool } from './contentExploration/searchContent.js';
 import { getGetDatasourceMetadataTool } from './getDatasourceMetadata/getDatasourceMetadata.js';
+import { getAddUserToGroupTool } from './groups/addUserToGroup.js';
+import { getCreateGroupTool } from './groups/createGroup.js';
+import { getDeleteGroupTool } from './groups/deleteGroup.js';
+import { getListGroupsTool } from './groups/listGroups.js';
+import { getListUsersInGroupTool } from './groups/listUsersInGroup.js';
+import { getRemoveUserFromGroupTool } from './groups/removeUserFromGroup.js';
+import { getUpdateGroupTool } from './groups/updateGroup.js';
 import { getListDatasourcesTool } from './listDatasources/listDatasources.js';
 import { getCreateProjectTool } from './projects/createProject.js';
 import { getDeleteProjectTool } from './projects/deleteProject.js';
 import { getListProjectsTool } from './projects/listProjects.js';
 import { getUpdateProjectTool } from './projects/updateProject.js';
 import { getGeneratePulseInsightBriefTool } from './pulse/generateInsightBrief/generatePulseInsightBriefTool.js';
+import { getCreateUserTool } from './users/createUser.js';
+import { getDeleteUserTool } from './users/deleteUser.js';
+import { getGetUserTool } from './users/getUser.js';
+import { getListGroupsForUserTool } from './users/listGroupsForUser.js';
+import { getListUsersTool } from './users/listUsers.js';
+import { getUpdateUserTool } from './users/updateUser.js';
 import { getGeneratePulseMetricValueInsightBundleTool } from './pulse/generateMetricValueInsightBundle/generatePulseMetricValueInsightBundleTool.js';
 import { getListAllPulseMetricDefinitionsTool } from './pulse/listAllMetricDefinitions/listAllPulseMetricDefinitions.js';
 import { getListPulseMetricDefinitionsFromDefinitionIdsTool } from './pulse/listMetricDefinitionsFromDefinitionIds/listPulseMetricDefinitionsFromDefinitionIds.js';
@@ -27,6 +40,19 @@ export const toolFactories = [
   getCreateProjectTool,
   getUpdateProjectTool,
   getDeleteProjectTool,
+  getListUsersTool,
+  getGetUserTool,
+  getListGroupsForUserTool,
+  getCreateUserTool,
+  getUpdateUserTool,
+  getDeleteUserTool,
+  getListGroupsTool,
+  getCreateGroupTool,
+  getUpdateGroupTool,
+  getDeleteGroupTool,
+  getListUsersInGroupTool,
+  getAddUserToGroupTool,
+  getRemoveUserFromGroupTool,
   getListAllPulseMetricDefinitionsTool,
   getListPulseMetricDefinitionsFromDefinitionIdsTool,
   getListPulseMetricsFromMetricDefinitionIdTool,

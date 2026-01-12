@@ -53,6 +53,23 @@ Standard config works in most MCP clients:
 - **update-project** - Update project properties (admin-only)
 - **delete-project** - Delete projects with confirmation (admin-only)
 
+### User Management
+- **list-users** - List and filter users with pagination
+- **get-user** - Get user details by ID
+- **list-groups-for-user** - List groups a user belongs to
+- **create-user** - Create new users (admin-only)
+- **update-user** - Update user properties (admin-only)
+- **delete-user** - Delete users with confirmation (admin-only)
+
+### Group Management
+- **list-groups** - List and filter groups with pagination
+- **create-group** - Create new groups (admin-only)
+- **update-group** - Update group properties (admin-only)
+- **delete-group** - Delete groups with confirmation (admin-only)
+- **list-users-in-group** - List users in a specific group
+- **add-user-to-group** - Add a user to a group (admin-only)
+- **remove-user-from-group** - Remove a user from a group (admin-only)
+
 ### Data Sources
 - **list-datasources** - List and filter data sources
 - **get-datasource-metadata** - Get metadata for a data source
