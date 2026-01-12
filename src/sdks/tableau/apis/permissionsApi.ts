@@ -145,17 +145,15 @@ const addProjectPermissionsEndpoint = makeEndpoint({
       type: 'Body',
       schema: z.object({
         permissions: z.object({
-          granteeCapabilities: z.object({
-            granteeCapabilities: z.array(
-              z.object({
-                user: z.object({ id: z.string() }).optional(),
-                group: z.object({ id: z.string() }).optional(),
-                capabilities: z.object({
-                  capability: z.array(capabilitySchema),
-                }),
+          granteeCapabilities: z.array(
+            z.object({
+              user: z.object({ id: z.string() }).optional(),
+              group: z.object({ id: z.string() }).optional(),
+              capabilities: z.object({
+                capability: z.array(capabilitySchema),
               }),
-            ),
-          }),
+            }),
+          ),
         }),
       }),
     },
@@ -187,17 +185,15 @@ const addWorkbookPermissionsEndpoint = makeEndpoint({
       type: 'Body',
       schema: z.object({
         permissions: z.object({
-          granteeCapabilities: z.object({
-            granteeCapabilities: z.array(
-              z.object({
-                user: z.object({ id: z.string() }).optional(),
-                group: z.object({ id: z.string() }).optional(),
-                capabilities: z.object({
-                  capability: z.array(capabilitySchema),
-                }),
+          granteeCapabilities: z.array(
+            z.object({
+              user: z.object({ id: z.string() }).optional(),
+              group: z.object({ id: z.string() }).optional(),
+              capabilities: z.object({
+                capability: z.array(capabilitySchema),
               }),
-            ),
-          }),
+            }),
+          ),
         }),
       }),
     },
@@ -229,17 +225,15 @@ const addDatasourcePermissionsEndpoint = makeEndpoint({
       type: 'Body',
       schema: z.object({
         permissions: z.object({
-          granteeCapabilities: z.object({
-            granteeCapabilities: z.array(
-              z.object({
-                user: z.object({ id: z.string() }).optional(),
-                group: z.object({ id: z.string() }).optional(),
-                capabilities: z.object({
-                  capability: z.array(capabilitySchema),
-                }),
+          granteeCapabilities: z.array(
+            z.object({
+              user: z.object({ id: z.string() }).optional(),
+              group: z.object({ id: z.string() }).optional(),
+              capabilities: z.object({
+                capability: z.array(capabilitySchema),
               }),
-            ),
-          }),
+            }),
+          ),
         }),
       }),
     },
@@ -271,17 +265,15 @@ const addViewPermissionsEndpoint = makeEndpoint({
       type: 'Body',
       schema: z.object({
         permissions: z.object({
-          granteeCapabilities: z.object({
-            granteeCapabilities: z.array(
-              z.object({
-                user: z.object({ id: z.string() }).optional(),
-                group: z.object({ id: z.string() }).optional(),
-                capabilities: z.object({
-                  capability: z.array(capabilitySchema),
-                }),
+          granteeCapabilities: z.array(
+            z.object({
+              user: z.object({ id: z.string() }).optional(),
+              group: z.object({ id: z.string() }).optional(),
+              capabilities: z.object({
+                capability: z.array(capabilitySchema),
               }),
-            ),
-          }),
+            }),
+          ),
         }),
       }),
     },
@@ -318,17 +310,15 @@ const updateDefaultPermissionsEndpoint = makeEndpoint({
       type: 'Body',
       schema: z.object({
         permissions: z.object({
-          granteeCapabilities: z.object({
-            granteeCapabilities: z.array(
-              z.object({
-                user: z.object({ id: z.string() }).optional(),
-                group: z.object({ id: z.string() }).optional(),
-                capabilities: z.object({
-                  capability: z.array(capabilitySchema),
-                }),
+          granteeCapabilities: z.array(
+            z.object({
+              user: z.object({ id: z.string() }).optional(),
+              group: z.object({ id: z.string() }).optional(),
+              capabilities: z.object({
+                capability: z.array(capabilitySchema),
               }),
-            ),
-          }),
+            }),
+          ),
         }),
       }),
     },

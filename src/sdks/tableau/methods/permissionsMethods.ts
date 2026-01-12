@@ -162,9 +162,7 @@ export default class PermissionsMethods extends AuthenticatedMethods<typeof perm
     const response = await this._apiClient.addProjectPermissions(
       {
         permissions: {
-          granteeCapabilities: {
-            granteeCapabilities,
-          },
+          granteeCapabilities,
         },
       },
       { params: { siteId, projectId }, ...this.authHeader },
@@ -198,9 +196,7 @@ export default class PermissionsMethods extends AuthenticatedMethods<typeof perm
     const response = await this._apiClient.addWorkbookPermissions(
       {
         permissions: {
-          granteeCapabilities: {
-            granteeCapabilities,
-          },
+          granteeCapabilities,
         },
       },
       { params: { siteId, workbookId }, ...this.authHeader },
@@ -234,9 +230,7 @@ export default class PermissionsMethods extends AuthenticatedMethods<typeof perm
     const response = await this._apiClient.addDatasourcePermissions(
       {
         permissions: {
-          granteeCapabilities: {
-            granteeCapabilities,
-          },
+          granteeCapabilities,
         },
       },
       { params: { siteId, datasourceId }, ...this.authHeader },
@@ -270,9 +264,7 @@ export default class PermissionsMethods extends AuthenticatedMethods<typeof perm
     const response = await this._apiClient.addViewPermissions(
       {
         permissions: {
-          granteeCapabilities: {
-            granteeCapabilities,
-          },
+          granteeCapabilities,
         },
       },
       { params: { siteId, viewId }, ...this.authHeader },
@@ -309,9 +301,7 @@ export default class PermissionsMethods extends AuthenticatedMethods<typeof perm
     const response = await this._apiClient.updateDefaultPermissions(
       {
         permissions: {
-          granteeCapabilities: {
-            granteeCapabilities,
-          },
+          granteeCapabilities,
         },
       },
       { params: { siteId, projectId, resourceType }, ...this.authHeader },
