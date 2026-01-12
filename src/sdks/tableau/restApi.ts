@@ -13,6 +13,7 @@ import {
 } from './methods/authenticationMethods.js';
 import ContentExplorationMethods from './methods/contentExplorationMethods.js';
 import DatasourcesMethods from './methods/datasourcesMethods.js';
+import ExtractRefreshMethods from './methods/extractRefreshMethods.js';
 import GroupsMethods from './methods/groupsMethods.js';
 import MetadataMethods from './methods/metadataMethods.js';
 import PermissionsMethods from './methods/permissionsMethods.js';
@@ -42,6 +43,7 @@ export class RestApi {
   private _authenticatedServerMethods?: AuthenticatedServerMethods;
   private _contentExplorationMethods?: ContentExplorationMethods;
   private _datasourcesMethods?: DatasourcesMethods;
+  private _extractRefreshMethods?: ExtractRefreshMethods;
   private _groupsMethods?: GroupsMethods;
   private _metadataMethods?: MetadataMethods;
   private _permissionsMethods?: PermissionsMethods;
@@ -154,6 +156,18 @@ export class RestApi {
     }
 
     return this._datasourcesMethods;
+  }
+
+  get extractRefreshMethods(): ExtractRefreshMethods {
+    if (!this._extractRefreshMethods) {
+      this._extractRefreshMethods = new ExtractRefreshMethods(this._baseUrl, this.creds, {
+        timeout: this._maxRequestTimeoutMs,
+        signal: this._signal,
+      });
+      this._addInterceptors(this._baseUrl, this._extractRefreshMethods.interceptors);
+    }
+
+    return this._extractRefreshMethods;
   }
 
   get metadataMethods(): MetadataMethods {

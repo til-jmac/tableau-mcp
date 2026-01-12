@@ -81,6 +81,14 @@ Standard config works in most MCP clients:
 - **delete-permission** - Delete a specific permission
 - **delete-default-permission** - Delete a default permission from a project
 
+### Extract Refresh Management
+- **list-extract-refresh-tasks** - List extract refresh tasks with pagination
+- **get-extract-refresh-task** - Get details for a specific task
+- **create-extract-refresh-task** - Create a new extract refresh task (Cloud only)
+- **update-extract-refresh-task** - Update an existing task (Cloud only)
+- **run-extract-refresh-task** - Run a task immediately
+- **delete-extract-refresh-task** - Delete a task with confirmation
+
 ### Data Sources
 - **list-datasources** - List and filter data sources
 - **get-datasource-metadata** - Get metadata for a data source
