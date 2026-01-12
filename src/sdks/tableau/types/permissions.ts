@@ -33,6 +33,8 @@ export type GranteeCapabilities = z.infer<typeof granteeCapabilitiesSchema>;
 
 /**
  * Permissions schema - full permissions response
+ * Note: granteeCapabilities can be either an array or an object with nested array
+ * depending on the Tableau API response format
  */
 export const permissionsSchema = z.object({
   parent: z
@@ -42,9 +44,12 @@ export const permissionsSchema = z.object({
     })
     .optional(),
   granteeCapabilities: z
-    .object({
-      granteeCapabilities: z.array(granteeCapabilitiesSchema).optional(),
-    })
+    .union([
+      z.array(granteeCapabilitiesSchema),
+      z.object({
+        granteeCapabilities: z.array(granteeCapabilitiesSchema).optional(),
+      }),
+    ])
     .optional(),
 });
 
