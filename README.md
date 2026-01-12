@@ -70,6 +70,16 @@ Standard config works in most MCP clients:
 - **add-user-to-group** - Add a user to a group (admin-only)
 - **remove-user-from-group** - Remove a user from a group (admin-only)
 
+### Permissions Management
+- **list-project-permissions** - List permissions for a project
+- **list-workbook-permissions** - List permissions for a workbook
+- **list-datasource-permissions** - List permissions for a datasource
+- **list-view-permissions** - List permissions for a view
+- **list-default-permissions** - List default permissions for a project
+- **add-permissions** - Add permissions to a resource
+- **update-default-permissions** - Update default permissions for a project
+- **delete-permission** - Delete a specific permission
+
 ### Data Sources
 - **list-datasources** - List and filter data sources
 - **get-datasource-metadata** - Get metadata for a data source

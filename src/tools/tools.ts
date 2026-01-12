@@ -8,6 +8,14 @@ import { getListUsersInGroupTool } from './groups/listUsersInGroup.js';
 import { getRemoveUserFromGroupTool } from './groups/removeUserFromGroup.js';
 import { getUpdateGroupTool } from './groups/updateGroup.js';
 import { getListDatasourcesTool } from './listDatasources/listDatasources.js';
+import { getAddPermissionsTool } from './permissions/addPermissions.js';
+import { getDeletePermissionTool } from './permissions/deletePermission.js';
+import { getListDatasourcePermissionsTool } from './permissions/listDatasourcePermissions.js';
+import { getListDefaultPermissionsTool } from './permissions/listDefaultPermissions.js';
+import { getListProjectPermissionsTool } from './permissions/listProjectPermissions.js';
+import { getListViewPermissionsTool } from './permissions/listViewPermissions.js';
+import { getListWorkbookPermissionsTool } from './permissions/listWorkbookPermissions.js';
+import { getUpdateDefaultPermissionsTool } from './permissions/updateDefaultPermissions.js';
 import { getCreateProjectTool } from './projects/createProject.js';
 import { getDeleteProjectTool } from './projects/deleteProject.js';
 import { getListProjectsTool } from './projects/listProjects.js';
@@ -53,6 +61,14 @@ export const toolFactories = [
   getListUsersInGroupTool,
   getAddUserToGroupTool,
   getRemoveUserFromGroupTool,
+  getListProjectPermissionsTool,
+  getListWorkbookPermissionsTool,
+  getListDatasourcePermissionsTool,
+  getListViewPermissionsTool,
+  getListDefaultPermissionsTool,
+  getAddPermissionsTool,
+  getUpdateDefaultPermissionsTool,
+  getDeletePermissionTool,
   getListAllPulseMetricDefinitionsTool,
   getListPulseMetricDefinitionsFromDefinitionIdsTool,
   getListPulseMetricsFromMetricDefinitionIdTool,

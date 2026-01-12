@@ -15,6 +15,7 @@ import ContentExplorationMethods from './methods/contentExplorationMethods.js';
 import DatasourcesMethods from './methods/datasourcesMethods.js';
 import GroupsMethods from './methods/groupsMethods.js';
 import MetadataMethods from './methods/metadataMethods.js';
+import PermissionsMethods from './methods/permissionsMethods.js';
 import ProjectsMethods from './methods/projectsMethods.js';
 import PulseMethods from './methods/pulseMethods.js';
 import { AuthenticatedServerMethods, ServerMethods } from './methods/serverMethods.js';
@@ -43,6 +44,7 @@ export class RestApi {
   private _datasourcesMethods?: DatasourcesMethods;
   private _groupsMethods?: GroupsMethods;
   private _metadataMethods?: MetadataMethods;
+  private _permissionsMethods?: PermissionsMethods;
   private _projectsMethods?: ProjectsMethods;
   private _pulseMethods?: PulseMethods;
   private _serverMethods?: ServerMethods;
@@ -165,6 +167,18 @@ export class RestApi {
     }
 
     return this._metadataMethods;
+  }
+
+  get permissionsMethods(): PermissionsMethods {
+    if (!this._permissionsMethods) {
+      this._permissionsMethods = new PermissionsMethods(this._baseUrl, this.creds, {
+        timeout: this._maxRequestTimeoutMs,
+        signal: this._signal,
+      });
+      this._addInterceptors(this._baseUrl, this._permissionsMethods.interceptors);
+    }
+
+    return this._permissionsMethods;
   }
 
   get projectsMethods(): ProjectsMethods {
