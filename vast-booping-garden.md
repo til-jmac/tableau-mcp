@@ -181,6 +181,52 @@ Add comprehensive server administration tools to the Tableau MCP server to suppo
 
 **Build & Test:** All 791 tests pass, build successful
 
+---
+
+### Session 4: 2026-01-12
+
+#### Phase 3: Permissions Management - COMPLETE
+
+**SDK Layer Created:**
+- Created `/src/sdks/tableau/types/permissions.ts` - Permissions schemas with capability/grantee types
+- Created `/src/sdks/tableau/apis/permissionsApi.ts` - 15 API endpoints
+- Created `/src/sdks/tableau/methods/permissionsMethods.ts` - 15 methods
+- Updated `/src/sdks/tableau/restApi.ts` - Integrated permissionsMethods
+
+**Utility Created:**
+- Created `/src/utils/permissions/capabilityValidator.ts` - Validates capabilities per resource type
+
+**Permission Tools (9):**
+- ✅ list-project-permissions
+- ✅ list-workbook-permissions
+- ✅ list-datasource-permissions
+- ✅ list-view-permissions
+- ✅ list-default-permissions
+- ✅ add-permissions
+- ✅ update-default-permissions
+- ✅ delete-permission
+- ✅ delete-default-permission
+
+**Commits:**
+- `4a277bb` - Add Phase 3: Permissions Management Tools (8 tools)
+- `c6d1e13` - fix: Address code review findings (JWT scopes, add delete-default-permission)
+- `a2703f5` - fix: Handle both array and object formats for granteeCapabilities
+
+**Issues Found & Fixed:**
+1. JWT scopes: Changed from `tableau:content:read` to `tableau:permissions:read` for list operations
+2. Missing tool: Added `delete-default-permission` tool
+3. Schema mismatch: `granteeCapabilities` can be array or object - fixed with union type
+
+**Testing Status:**
+- ✅ list-default-permissions - tested, working after schema fix
+- ⏳ Other permission tools - pending manual testing
+
+#### Next Steps
+- Complete manual testing of Phase 3 permission tools
+- Phase 4: Extract Refresh Management Tools (6 tools)
+
+---
+
 #### Code Review Findings (For Later)
 
 | Priority | Issue | Location |

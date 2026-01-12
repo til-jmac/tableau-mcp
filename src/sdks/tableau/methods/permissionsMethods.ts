@@ -3,7 +3,7 @@ import { Zodios } from '@zodios/core';
 import { AxiosRequestConfig } from '../../../utils/axios.js';
 import { permissionsApis } from '../apis/permissionsApi.js';
 import { Credentials } from '../types/credentials.js';
-import { Permissions, Capability, GranteeCapabilities } from '../types/permissions.js';
+import { Permissions, Capability } from '../types/permissions.js';
 import AuthenticatedMethods from './authenticatedMethods.js';
 
 /**

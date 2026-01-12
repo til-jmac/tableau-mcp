@@ -1,11 +1,7 @@
 import { makeApi, makeEndpoint, ZodiosEndpointDefinitions } from '@zodios/core';
 import { z } from 'zod';
 
-import {
-  permissionsSchema,
-  capabilitySchema,
-  granteeCapabilitiesSchema,
-} from '../types/permissions.js';
+import { permissionsSchema, capabilitySchema } from '../types/permissions.js';
 
 // GET Project Permissions
 const getProjectPermissionsEndpoint = makeEndpoint({
