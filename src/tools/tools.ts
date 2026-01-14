@@ -47,6 +47,7 @@ import { getListViewsTool } from './views/listViews.js';
 import { getDownloadWorkbookTool } from './workbooks/downloadWorkbook.js';
 import { getGetWorkbookTool } from './workbooks/getWorkbook.js';
 import { getListWorkbooksTool } from './workbooks/listWorkbooks.js';
+import { getReadExtractedFileTool } from './workbooks/readExtractedFile.js';
 import { getUnpackTwbxTool } from './workbooks/unpackTwbx.js';
 
 export const toolFactories = [
@@ -95,6 +96,7 @@ export const toolFactories = [
   getGetWorkbookTool,
   getDownloadWorkbookTool,
   getUnpackTwbxTool,
+  getReadExtractedFileTool,
   getGetViewDataTool,
   getGetViewImageTool,
   getListWorkbooksTool,

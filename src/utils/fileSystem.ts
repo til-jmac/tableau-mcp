@@ -2,7 +2,7 @@ import * as fs from 'fs/promises';
 import * as os from 'os';
 import * as path from 'path';
 
-const TEMP_BASE = path.join(os.tmpdir(), 'tableau-mcp');
+export const TEMP_BASE = path.join(os.tmpdir(), 'tableau-mcp');
 
 /**
  * Ensure the downloads directory exists

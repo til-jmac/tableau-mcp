@@ -7,6 +7,7 @@ export const toolNames = [
   'get-workbook',
   'download-workbook',
   'unpack-twbx',
+  'read-extracted-file',
   'get-view-data',
   'get-view-image',
   'list-projects',
@@ -68,7 +69,7 @@ export type ToolGroupName = (typeof toolGroupNames)[number];
 
 export const toolGroups = {
   datasource: ['list-datasources', 'get-datasource-metadata', 'query-datasource'],
-  workbook: ['list-workbooks', 'get-workbook', 'download-workbook', 'unpack-twbx'],
+  workbook: ['list-workbooks', 'get-workbook', 'download-workbook', 'unpack-twbx', 'read-extracted-file'],
   view: ['list-views', 'get-view-data', 'get-view-image'],
   project: ['list-projects', 'create-project', 'update-project', 'delete-project'],
   user: [
