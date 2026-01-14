@@ -75,4 +75,37 @@ export default class WorkbooksMethods extends AuthenticatedMethods<typeof workbo
       workbooks: response.workbooks.workbook ?? [],
     };
   };
+
+  /**
+   * Downloads the contents of a workbook in .twb or .twbx format.
+   *
+   * Required scopes: `tableau:workbooks:download`
+   *
+   * @param workbookId - The ID of the workbook to download
+   * @param siteId - The Tableau site ID
+   * @param includeExtract - Whether to include data extracts (default: true)
+   * @link https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#download_workbook
+   */
+  downloadWorkbookContent = async ({
+    workbookId,
+    siteId,
+    includeExtract,
+  }: {
+    workbookId: string;
+    siteId: string;
+    includeExtract?: boolean;
+  }): Promise<{ data: ArrayBuffer; contentDisposition?: string }> => {
+    const response = await this._apiClient.downloadWorkbookContent({
+      params: { siteId, workbookId },
+      queries: { includeExtract },
+      ...this.authHeader,
+      responseType: 'arraybuffer',
+    });
+    // The response is the raw ArrayBuffer, but we need the headers too
+    // Zodios returns the data directly, so we need to access the underlying response
+    return {
+      data: response as unknown as ArrayBuffer,
+      contentDisposition: undefined, // Headers not accessible through Zodios
+    };
+  };
 }

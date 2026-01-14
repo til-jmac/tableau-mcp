@@ -14,6 +14,22 @@ const getWorkbookEndpoint = makeEndpoint({
   response: z.object({ workbook: workbookSchema }),
 });
 
+const downloadWorkbookContentEndpoint = makeEndpoint({
+  method: 'get',
+  path: '/sites/:siteId/workbooks/:workbookId/content',
+  alias: 'downloadWorkbookContent',
+  description: 'Downloads the contents of a workbook in .twb or .twbx format.',
+  parameters: [
+    {
+      name: 'includeExtract',
+      type: 'Query',
+      schema: z.boolean().optional(),
+      description: 'Whether to include data extracts in the download. Default is true.',
+    },
+  ],
+  response: z.any(),
+});
+
 const queryWorkbooksForSiteEndpoint = makeEndpoint({
   method: 'get',
   path: '/sites/:siteId/workbooks',
@@ -42,6 +58,10 @@ const queryWorkbooksForSiteEndpoint = makeEndpoint({
   }),
 });
 
-const workbooksApi = makeApi([queryWorkbooksForSiteEndpoint, getWorkbookEndpoint]);
+const workbooksApi = makeApi([
+  queryWorkbooksForSiteEndpoint,
+  getWorkbookEndpoint,
+  downloadWorkbookContentEndpoint,
+]);
 
 export const workbooksApis = [...workbooksApi] as const satisfies ZodiosEndpointDefinitions;
